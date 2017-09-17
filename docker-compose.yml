@@ -1,0 +1,32 @@
+version: "3"
+services:
+  log-go:
+    build: .
+    image: log-go:0.0.8
+    environment:
+      - PORT=80
+      - DB_HOSTNAME=db
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USERNAME=${LOGGO_DB_USERNAME}
+      - DB_PASSWORD=${LOGGO_DB_PASSWORD}
+      - MASTER_KEY=${LOGGO_MASTER_KEY}
+    ports:
+      - "8000:80"
+    depends_on:
+      - "db"
+    restart: always
+    container_name: log-go
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=${LOGGO_DB_USERNAME}
+      - POSTGRES_PASSWORD=${LOGGO_DB_PASSWORD}
+      - POSTGRES_DB=postgres
+    ports:
+      - "8001:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+volumes:
+  pgdata:
