@@ -2,7 +2,7 @@ version: "3"
 services:
   log-go:
     build: .
-    image: log-go:0.0.8
+    image: log-go:0.0.9
     environment:
       - PORT=80
       - DB_HOSTNAME=db
@@ -12,7 +12,7 @@ services:
       - DB_PASSWORD=${LOGGO_DB_PASSWORD}
       - MASTER_KEY=${LOGGO_MASTER_KEY}
     ports:
-      - "8000:80"
+      - "8070:80"
     depends_on:
       - "db"
     restart: always
@@ -24,7 +24,7 @@ services:
       - POSTGRES_PASSWORD=${LOGGO_DB_PASSWORD}
       - POSTGRES_DB=postgres
     ports:
-      - "8001:5432"
+      - "8071:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: always

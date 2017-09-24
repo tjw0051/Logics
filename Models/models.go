@@ -11,7 +11,7 @@ type MessageModel struct {
 	Platform     string `json:"platform"`
 	Project      string `json:"project"`
 	Component    string `json:"component"`
-	LogType      string `json:"logType"`
+	LogType      string `json:"logType"` // crash, error, warning, info
 	Severity     string `json:"severity"`
 	Message      string `json:"message"`
 	MessageGroup string `json:"messageGroup"`
